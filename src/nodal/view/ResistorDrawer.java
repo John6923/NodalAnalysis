@@ -1,5 +1,9 @@
 package nodal.view;
 
+import static nodal.util.UnitFormater.formatVolt;
+import static nodal.util.UnitFormater.formatOhm;
+import static nodal.util.UnitFormater.formatAmp;
+
 import java.awt.Color;
 import java.awt.Graphics;
 
@@ -25,13 +29,13 @@ public class ResistorDrawer implements ElementDrawer {
 		DrawingUtils.drawResistor(g, start.getX(), start.getY(), end.getX(),
 				end.getY());
 
-		String r = String.format("%.1f Ohm", resistance);
+		String r = formatOhm(resistance);
 		String[] values = null;
 		Color[] colors = null;
 		if (Double.isFinite(resistor.getCurrent())
 				&& Double.isFinite(resistor.getVoltage())) {
-			String v = String.format("%f V", resistor.getVoltage());
-			String i = String.format("%f A", resistor.getCurrent());
+			String v = formatVolt(resistor.getVoltage());
+			String i = formatAmp(resistor.getCurrent());
 			values = new String[] { r, v, i };
 			colors = new Color[] { Color.BLACK, Color.RED, Color.BLUE };
 		} else {

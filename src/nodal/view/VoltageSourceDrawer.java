@@ -1,5 +1,8 @@
 package nodal.view;
 
+import static nodal.util.UnitFormater.formatAmp;
+import static nodal.util.UnitFormater.formatVolt;
+
 import java.awt.Color;
 import java.awt.Graphics;
 
@@ -23,11 +26,11 @@ public class VoltageSourceDrawer implements ElementDrawer {
 		Position end = nps.get(voltageSource.getPositiveNode());
 		DrawingUtils.drawVoltageSource(g, start.getX(), start.getY(),
 				end.getX(), end.getY());
-		String v = String.format("%.2fV", voltage);
+		String v = formatVolt(voltage);
 		String[] values = null;
 		Color[] colors = null;
 		if (Double.isFinite(voltageSource.getCurrent())) {
-			String i = String.format("%f A", voltageSource.getCurrent());
+			String i = formatAmp(voltageSource.getCurrent());
 			values = new String[] { v, i };
 			colors = new Color[] { Color.BLACK, Color.BLUE };
 		} else {

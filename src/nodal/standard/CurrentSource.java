@@ -1,5 +1,7 @@
 package nodal.standard;
 
+import static nodal.util.UnitFormater.prefixNumber;
+
 import nodal.framework.Node;
 import nodal.util.Matrix;
 
@@ -26,7 +28,7 @@ public class CurrentSource extends AbstractElement {
 	
 	@Override
 	public String toString() {
-		return String.format("%sA current source", CircuitImpl.prefixNumber(current));
+		return String.format("%sA current source", prefixNumber(current));
 	}
 
 }

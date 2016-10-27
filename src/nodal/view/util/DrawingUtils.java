@@ -3,7 +3,11 @@ package nodal.view.util;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class DrawingUtils {
+public abstract class DrawingUtils {
+	
+	private DrawingUtils() {
+		throw new AssertionError("Should not create instances of DrawingUtils");
+	}
 
 	public static void drawResistor(Graphics g, int sx, int sy, int ex,
 			int ey) {
@@ -117,7 +121,7 @@ public class DrawingUtils {
 		int mx = (ex + sx) / 2;
 		int my = (ey + sy) / 2;
 		if (sx == ex) { // Vertical
-			mx += 15;
+			mx += 17;
 		} else if (sy == ey) { // Horizontal
 			my -= 15;
 			mx += 5;

@@ -1,5 +1,7 @@
 package nodal.standard;
 
+import static nodal.util.UnitFormater.prefixNumber;
+
 import nodal.framework.Node;
 import nodal.util.Matrix;
 
@@ -21,7 +23,7 @@ public class Resistor extends AbstractElement {
 	
 	@Override
 	public String toString() {
-		return String.format("%sOhm resistor", CircuitImpl.prefixNumber(resistance));
+		return String.format("%sOhm resistor", prefixNumber(resistance));
 	}
 
 }

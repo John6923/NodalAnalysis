@@ -1,5 +1,6 @@
 package nodal.standard;
 
+import static nodal.util.UnitFormater.prefixNumber;
 import nodal.framework.Node;
 import nodal.util.Matrix;
 
@@ -25,7 +26,7 @@ public class VoltageSource extends AbstractElement {
 	
 	@Override
 	public String toString() {
-		return String.format("%sV voltage source", CircuitImpl.prefixNumber(voltage));
+		return String.format("%sV voltage source", prefixNumber(voltage));
 	}
 
 }

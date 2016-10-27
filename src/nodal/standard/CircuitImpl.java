@@ -1,13 +1,15 @@
 package nodal.standard;
 
+import static nodal.util.UnitFormater.prefixNumber;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import nodal.framework.Circuit;
 import nodal.framework.Element;
+import nodal.framework.InvalidNodeException;
 import nodal.framework.Node;
 import nodal.util.Matrix;
-import nodal.framework.InvalidNodeException;
 
 public class CircuitImpl implements Circuit {
 	private List<MutableElement> elements = new ArrayList<>();
@@ -204,25 +206,5 @@ public class CircuitImpl implements Circuit {
 			sb.append('\n');
 		}
 		return sb.toString();
-	}
-
-	private static String format(String prefix, double scalar, double number) {
-		return String.format("%.3f %s", scalar * number, prefix);
-	}
-
-	public static String prefixNumber(double number) {
-		if (number >= 1000000) {
-			return format("M", 0.000001, number);
-		} else if (number >= 1000) {
-			return format("k", 0.001, number);
-		} else if (number >= 1) {
-			return format("", 1, number);
-		} else if (number >= 0.001) {
-			return format("m", 1000, number);
-		} else if(number >= 0.000001){
-			return format("u", 1000000, number);
-		} else {
-			return "0 ";
-		}
 	}
 }
