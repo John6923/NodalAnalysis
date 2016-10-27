@@ -168,6 +168,14 @@ public class CircuitImpl implements Circuit {
 		addGenericElement(neg, pos, e);
 		return e;
 	}
+	
+	@Override
+	public Element createWire(Node neg, Node pos) {
+		checkElementArguments(neg, pos);
+		MutableElement e = new Wire(neg, pos);
+		addGenericElement(neg, pos, e);
+		return e;
+	}
 
 	@Override
 	public void setGround(Node gnd) {

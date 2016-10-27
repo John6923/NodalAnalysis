@@ -108,6 +108,11 @@ public abstract class DrawingUtils {
 		g.drawLine(px - dyX, py - dyY, px + dyX, py + dyY);
 		g.drawLine(mx - dxX, my + dxY, mx + dxX, my - dxY);
 	}
+	
+	public static void drawWire(Graphics g, int sx, int sy, int ex, int ey) {
+		g.setColor(Color.BLACK);
+		g.drawLine(sx, sy, ex, ey);
+	}
 
 	public static void drawLabel(Graphics g, int sx, int sy, int ex, int ey,
 			String value) {

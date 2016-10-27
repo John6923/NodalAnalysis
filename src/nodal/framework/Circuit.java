@@ -119,6 +119,19 @@ public interface Circuit {
 	public Element createVoltageSource(Node neg, Node pos, double voltage);
 	
 	/**
+	 * Create a new wire connecting the two nodes
+	 * 
+	 * @param neg Node current is flowing out of
+	 * @param pos Node current is flowing in to
+	 * @return Element representing the created wire
+	 * @throws NullPointerException
+	 *             if either {@code pos} or {@code neg} node is null
+	 * @throws InvalidNodeException
+	 *             if positive and negative nodes are the same
+	 */
+	public Element createWire(Node neg, Node pos);
+	
+	/**
 	 * Sets the provided node as the ground node for the entire circuit
 	 * 
 	 * @param gnd

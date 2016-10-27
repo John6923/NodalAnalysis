@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import nodal.view.builder.CurrentSourceBuilder;
 import nodal.view.builder.ResistorBuilder;
 import nodal.view.builder.VoltageSourceBuilder;
+import nodal.view.builder.WireBuilder;
 
 public class CircuitViewFrame {
 	public static void main(String args[]) {
@@ -65,6 +66,9 @@ public class CircuitViewFrame {
 					case KeyEvent.VK_V:
 						cv.setCurrentBuilder(VoltageSourceBuilder.INSTANCE);
 						break;
+					case KeyEvent.VK_W:
+						cv.setCurrentBuilder(WireBuilder.INSTANCE);
+						break;
 					case KeyEvent.VK_ESCAPE:
 						cv.cancelLine();
 						break;
@@ -72,12 +76,12 @@ public class CircuitViewFrame {
 						System.out.println("R: Draw resistor");
 						System.out.println("V: Draw voltage source");
 						System.out.println("I: Draw current source");
+						System.out.println("W: Draw wire");
 						System.out.println("ESC: Quit drawing current line");
 						System.out.println("/: Print this message");
 						break;
-					case KeyEvent.VK_P: {
+					case KeyEvent.VK_P: 
 						cif.showHide();
-					}
 						break;
 					default:
 						return;
