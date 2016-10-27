@@ -25,7 +25,8 @@ public class CircuitView {
 	private int placedX, placedY, hoverX, hoverY;
 	private ElementBuilder builder = ResistorBuilder.INSTANCE;
 
-	public void paint(Graphics g, int screenWidth, int screenHeight) {
+	public void paint(Graphics g, int screenWidth, int screenHeight,
+			boolean hasFocus) {
 		for (Element e : elements.keySet()) {
 			ElementDrawer ce = elements.get(e);
 			ce.draw(g, nodes);
@@ -36,8 +37,10 @@ public class CircuitView {
 			g.fillOval(hoverX - 3, hoverY - 3, 6, 6);
 			builder.draw(g, placedX, placedY, hoverX, hoverY);
 		} else {
-			g.setColor(Color.BLACK);
-			g.drawOval(hoverX - 3, hoverY - 3, 6, 6);
+			if (hasFocus) {
+				g.setColor(Color.BLACK);
+				g.drawOval(hoverX - 3, hoverY - 3, 6, 6);
+			}
 		}
 	}
 
@@ -86,11 +89,10 @@ public class CircuitView {
 		if (!nodes.contains(p)) {
 			n = circuit.createNode();
 			nodes.add(n, p);
-		}
-		else {
+		} else {
 			n = nodes.get(p);
 		}
-		if(circuit.getGround() == null) {
+		if (circuit.getGround() == null) {
 			circuit.setGround(n);
 		}
 		return n;
@@ -111,7 +113,7 @@ public class CircuitView {
 	public void cancelLine() {
 		drawingLine = false;
 	}
-	
+
 	public String getCircuitString() {
 		return circuit.toString();
 	}

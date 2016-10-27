@@ -111,8 +111,10 @@ public class CircuitViewFrame {
 
 				@Override
 				public void mouseMoved(MouseEvent e) {
-					if (cv.hoverEnd(e.getX(), e.getY()))
-						repaint();
+					if (hasFocus()) {
+						if (cv.hoverEnd(e.getX(), e.getY()))
+							repaint();
+					}
 				}
 			});
 		}
@@ -122,7 +124,7 @@ public class CircuitViewFrame {
 			super.paintComponent(g);
 			int width = this.getWidth();
 			int height = this.getHeight();
-			cv.paint(g, width, height);
+			cv.paint(g, width, height, hasFocus());
 			cif.updateContent(cv.getCircuitString());
 		}
 
