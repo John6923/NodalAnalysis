@@ -11,7 +11,7 @@ import nodal.view.util.DrawingUtils;
 
 public class VoltageSourceBuilder implements ElementBuilder {
 
-	public static ElementBuilder INSTANCE = new VoltageSourceBuilder();
+	public static final ElementBuilder INSTANCE = new VoltageSourceBuilder();
 
 	private VoltageSourceBuilder() {
 

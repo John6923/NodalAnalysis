@@ -11,7 +11,7 @@ import nodal.view.util.DrawingUtils;
 
 public class ResistorBuilder implements ElementBuilder {
 	
-	public static ElementBuilder INSTANCE = new ResistorBuilder();
+	public static final ElementBuilder INSTANCE = new ResistorBuilder();
 	
 	private ResistorBuilder() {
 		

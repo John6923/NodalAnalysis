@@ -11,7 +11,7 @@ import nodal.view.util.DrawingUtils;
 
 public class CurrentSourceBuilder implements ElementBuilder {
 
-	public static ElementBuilder INSTANCE = new CurrentSourceBuilder();
+	public static final ElementBuilder INSTANCE = new CurrentSourceBuilder();
 
 	private CurrentSourceBuilder() {
 
