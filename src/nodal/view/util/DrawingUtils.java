@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class DrawingUtils {
-	
+
 	public static void drawResistor(Graphics g, int sx, int sy, int ex,
 			int ey) {
 		int mx = (sx + ex) / 2, my = (sy + ey) / 2;
@@ -104,9 +104,16 @@ public class DrawingUtils {
 		g.drawLine(px - dyX, py - dyY, px + dyX, py + dyY);
 		g.drawLine(mx - dxX, my + dxY, mx + dxX, my - dxY);
 	}
-	
+
 	public static void drawLabel(Graphics g, int sx, int sy, int ex, int ey,
 			String value) {
+		drawLabels(g, sx, sy, ex, ey, new Color[] { Color.BLACK },
+				new String[] { value });
+	}
+
+	public static void drawLabels(Graphics g, int sx, int sy, int ex, int ey,
+			Color[] colors, String[] values) {
+		int dy = g.getFontMetrics().getHeight() + 2;
 		int mx = (ex + sx) / 2;
 		int my = (ey + sy) / 2;
 		if (sx == ex) { // Vertical
@@ -114,6 +121,7 @@ public class DrawingUtils {
 		} else if (sy == ey) { // Horizontal
 			my -= 15;
 			mx += 5;
+			dy *= -1;
 		} else if (sx < ex) { // Right
 			if (sy > ey) { // Up
 				mx += 20;
@@ -121,15 +129,22 @@ public class DrawingUtils {
 			} else { // Down
 				mx += 15;
 				my -= 5;
+				dy *= -1;
 			}
 		} else { // Left
 			if (sy > ey) { // Up
 				mx += 20;
+				dy *= -1;
 			} else { // Down
 				mx += 15;
 				my += 10;
 			}
 		}
-		g.drawString(value, mx, my);
+		for (int i = 0; i < values.length; i++) {
+			Color color = colors[i < colors.length ? i : colors.length - 1];
+			String value = values[i];
+			g.setColor(color);
+			g.drawString(value, mx, my + i * dy);
+		}
 	}
 }

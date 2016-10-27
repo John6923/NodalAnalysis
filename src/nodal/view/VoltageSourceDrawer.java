@@ -1,5 +1,6 @@
 package nodal.view;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import nodal.framework.Element;
@@ -20,9 +21,21 @@ public class VoltageSourceDrawer implements ElementDrawer {
 	public void draw(Graphics g, NodePositionStore nps) {
 		Position start = nps.get(voltageSource.getNegitiveNode());
 		Position end = nps.get(voltageSource.getPositiveNode());
-		DrawingUtils.drawVoltageSource(g, start.getX(), start.getY(), end.getX(), end.getY());
-		String s = String.format("%.2fV", voltage);
-		DrawingUtils.drawLabel(g, start.getX(), start.getY(), end.getX(), end.getY(), s);
+		DrawingUtils.drawVoltageSource(g, start.getX(), start.getY(),
+				end.getX(), end.getY());
+		String v = String.format("%.2fV", voltage);
+		String[] values = null;
+		Color[] colors = null;
+		if (Double.isFinite(voltageSource.getCurrent())) {
+			String i = String.format("%f A", voltageSource.getCurrent());
+			values = new String[] { v, i };
+			colors = new Color[] { Color.BLACK, Color.BLUE };
+		} else {
+			values = new String[] { v };
+			colors = new Color[] { Color.BLACK };
+		}
+		DrawingUtils.drawLabels(g, start.getX(), start.getY(), end.getX(),
+				end.getY(), colors, values);
 	}
 
 }

@@ -62,6 +62,9 @@ public class CircuitViewFrame {
 					case KeyEvent.VK_ESCAPE:
 						cv.cancelLine();
 						break;
+					case KeyEvent.VK_P:
+						cv.print();
+						break;
 					default:
 						return;
 					}

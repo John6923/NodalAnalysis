@@ -82,10 +82,18 @@ public class CircuitView {
 	}
 
 	private Node handleNodeCreation(Position p) {
+		Node n = null;
 		if (!nodes.contains(p)) {
-			nodes.add(circuit.createNode(), p);
+			n = circuit.createNode();
+			nodes.add(n, p);
 		}
-		return nodes.get(p);
+		else {
+			n = nodes.get(p);
+		}
+		if(circuit.getGround() == null) {
+			circuit.setGround(n);
+		}
+		return n;
 	}
 
 	public boolean hoverEnd(int x, int y) {
@@ -102,6 +110,10 @@ public class CircuitView {
 
 	public void cancelLine() {
 		drawingLine = false;
+	}
+	
+	public void print() {
+		System.out.println(circuit);
 	}
 
 	private static int round(int i) {
