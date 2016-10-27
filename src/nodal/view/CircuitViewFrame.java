@@ -13,6 +13,10 @@ import java.awt.event.MouseMotionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import nodal.view.builder.CurrentSourceBuilder;
+import nodal.view.builder.ResistorBuilder;
+import nodal.view.builder.VoltageSourceBuilder;
+
 public class CircuitViewFrame {
 	public static void main(String args[]) {
 		CircuitView circuitView = new CircuitView();

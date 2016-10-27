@@ -1,4 +1,4 @@
-package nodal.view;
+package nodal.view.drawer;
 
 import static nodal.util.UnitFormater.formatAmp;
 import static nodal.util.UnitFormater.formatVolt;

@@ -1,10 +1,11 @@
-package nodal.view;
+package nodal.view.builder;
 
 import java.awt.Graphics;
 
 import nodal.framework.Circuit;
 import nodal.framework.Element;
 import nodal.framework.Node;
+import nodal.view.drawer.ElementDrawer;
 
 public interface ElementBuilder {
 	public boolean requiresValue();

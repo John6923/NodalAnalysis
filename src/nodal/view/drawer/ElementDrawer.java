@@ -1,4 +1,4 @@
-package nodal.view;
+package nodal.view.drawer;
 
 import java.awt.Graphics;
 

@@ -1,10 +1,12 @@
-package nodal.view;
+package nodal.view.builder;
 
 import java.awt.Graphics;
 
 import nodal.framework.Circuit;
 import nodal.framework.Element;
 import nodal.framework.Node;
+import nodal.view.drawer.CurrentSourceDrawer;
+import nodal.view.drawer.ElementDrawer;
 import nodal.view.util.DrawingUtils;
 
 public class CurrentSourceBuilder implements ElementBuilder {
