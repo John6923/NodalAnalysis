@@ -1,4 +1,4 @@
-package nodal;
+package nodal.standard;
 
 import nodal.framework.Circuit;
 import nodal.framework.Node;
