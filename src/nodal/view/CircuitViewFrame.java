@@ -17,7 +17,7 @@ public class CircuitViewFrame {
 	public static void main(String args[]) {
 		CircuitView circuitView = new CircuitView();
 
-		JFrame frame = new JFrame("Circuit View");
+		JFrame frame = new JFrame("Circuit View ('/' for help)");
 		frame.setLayout(new BorderLayout());
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(new CircuitArea(circuitView), BorderLayout.CENTER);
@@ -30,9 +30,11 @@ public class CircuitViewFrame {
 		private static final long serialVersionUID = 3025582048785217779L;
 
 		private CircuitView cv;
+		private CircuitInfoFrame cif;
 
 		public CircuitArea(CircuitView cv) {
 			this.cv = cv;
+			cif = new CircuitInfoFrame();
 			setBackground(Color.WHITE);
 			setMinimumSize(new Dimension(480, 320));
 			setPreferredSize(new Dimension(480, 320));
@@ -62,8 +64,16 @@ public class CircuitViewFrame {
 					case KeyEvent.VK_ESCAPE:
 						cv.cancelLine();
 						break;
-					case KeyEvent.VK_P:
-						cv.print();
+					case KeyEvent.VK_SLASH:
+						System.out.println("R: Draw resistor");
+						System.out.println("V: Draw voltage source");
+						System.out.println("I: Draw current source");
+						System.out.println("ESC: Quit drawing current line");
+						System.out.println("/: Print this message");
+						break;
+					case KeyEvent.VK_P: {
+						cif.showHide();
+					}
 						break;
 					default:
 						return;
@@ -113,6 +123,7 @@ public class CircuitViewFrame {
 			int width = this.getWidth();
 			int height = this.getHeight();
 			cv.paint(g, width, height);
+			cif.updateContent(cv.getCircuitString());
 		}
 
 	}

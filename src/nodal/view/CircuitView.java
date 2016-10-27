@@ -112,8 +112,8 @@ public class CircuitView {
 		drawingLine = false;
 	}
 	
-	public void print() {
-		System.out.println(circuit);
+	public String getCircuitString() {
+		return circuit.toString();
 	}
 
 	private static int round(int i) {
