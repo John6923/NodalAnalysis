@@ -5,12 +5,18 @@ import java.util.List;
 
 public class Matrix {
 	private List<Row> rows;
+	private int lastCol;
 
 	public Matrix(int height, int width) {
+		this.lastCol = width-1;
 		rows = new ArrayList<>(height);
 		for (int i = 0; i < height; i++) {
 			rows.add(new Row(width));
 		}
+	}
+	
+	public int lastCol() {
+		return lastCol;
 	}
 
 	public double get(int row, int col) {
