@@ -1,4 +1,4 @@
-package nodal;
+package nodal.util;
 
 import java.util.ArrayList;
 import java.util.List;

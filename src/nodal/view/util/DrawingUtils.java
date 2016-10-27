@@ -1,4 +1,4 @@
-package nodal.view;
+package nodal.view.util;
 
 import java.awt.Color;
 import java.awt.Graphics;

@@ -2,21 +2,33 @@ package nodal.view;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.JOptionPane;
 
+import nodal.framework.Circuit;
+import nodal.framework.Element;
+import nodal.framework.Node;
+import nodal.standard.CircuitImpl;
+import nodal.view.util.DualHashMapNodePositionStore;
+import nodal.view.util.NodePositionStore;
+import nodal.view.util.Position;
+
 public class CircuitView {
-	private List<Element> elements = new ArrayList<>();
+	private Map<Element, ElementDrawer> elements = new HashMap<>();
+	private NodePositionStore nodes = new DualHashMapNodePositionStore();
+
+	private Circuit circuit = new CircuitImpl();
 
 	private boolean drawingLine = false;
 	private int placedX, placedY, hoverX, hoverY;
 	private ElementBuilder builder = ResistorBuilder.INSTANCE;
 
 	public void paint(Graphics g, int screenWidth, int screenHeight) {
-		for (Element ce : elements) {
-			ce.draw(g);
+		for (Element e : elements.keySet()) {
+			ElementDrawer ce = elements.get(e);
+			ce.draw(g, nodes);
 		}
 		if (drawingLine) {
 			g.setColor(Color.BLACK);
@@ -37,25 +49,43 @@ public class CircuitView {
 		hoverX = round(x);
 		hoverY = round(y);
 		if (drawingLine) {
-			double value = -1;
-			String msg = "Enter value: ";
-			while (value < 0) {
-				try {
-					value = Double
-							.parseDouble(JOptionPane.showInputDialog(msg));
-					msg = "Enter a value greater than zero: ";
-				} catch (NumberFormatException e) {
-					msg = "Not a number, enter value: ";
+			double value = Double.NaN;
+			if (builder.requiresValue()) {
+				String msg = builder.getValuePrompt();
+				while (!builder.validateValue(value)) {
+					try {
+						value = Double
+								.parseDouble(JOptionPane.showInputDialog(msg));
+					} catch (NumberFormatException e) {
+						value = Double.NaN;
+						msg = "Not a number, " + builder.getValuePrompt();
+					}
 				}
 			}
-			elements.add(builder.createElement(placedX, placedY, hoverX, hoverY,
-					value));
+			addElement(value);
 			drawingLine = false;
 		} else {
 			placedX = hoverX;
 			placedY = hoverY;
 			drawingLine = true;
 		}
+	}
+
+	private void addElement(double value) {
+		Position start = new Position(placedX, placedY);
+		Node neg = handleNodeCreation(start);
+		Position end = new Position(hoverX, hoverY);
+		Node pos = handleNodeCreation(end);
+		Element e = builder.createElement(circuit, neg, pos, value);
+		ElementDrawer ed = builder.createElementDrawer(e, value);
+		elements.put(e, ed);
+	}
+
+	private Node handleNodeCreation(Position p) {
+		if (!nodes.contains(p)) {
+			nodes.add(circuit.createNode(), p);
+		}
+		return nodes.get(p);
 	}
 
 	public boolean hoverEnd(int x, int y) {

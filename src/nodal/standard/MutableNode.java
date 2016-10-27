@@ -1,8 +1,8 @@
 package nodal.standard;
 
-import nodal.Matrix;
 import nodal.framework.Element;
 import nodal.framework.Node;
+import nodal.util.Matrix;
 
 /**
  * Node that can get its values from a matrix and add inbound and outbound

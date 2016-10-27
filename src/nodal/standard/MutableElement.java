@@ -1,7 +1,7 @@
 package nodal.standard;
 
-import nodal.Matrix;
 import nodal.framework.Element;
+import nodal.util.Matrix;
 
 /**
  * Element that can get and set its values based on a matrix it can also set its

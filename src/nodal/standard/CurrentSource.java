@@ -1,7 +1,7 @@
 package nodal.standard;
 
-import nodal.Matrix;
 import nodal.framework.Node;
+import nodal.util.Matrix;
 
 public class CurrentSource extends AbstractElement {
 	

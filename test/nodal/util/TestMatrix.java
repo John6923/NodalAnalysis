@@ -1,8 +1,10 @@
-package nodal;
+package nodal.util;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
+
+import nodal.util.Matrix;
 
 public class TestMatrix {
 	

@@ -2,6 +2,11 @@ package nodal.view;
 
 import java.awt.Graphics;
 
+import nodal.framework.Circuit;
+import nodal.framework.Element;
+import nodal.framework.Node;
+import nodal.view.util.DrawingUtils;
+
 public class ResistorBuilder implements ElementBuilder {
 	
 	public static ElementBuilder INSTANCE = new ResistorBuilder();
@@ -17,7 +22,7 @@ public class ResistorBuilder implements ElementBuilder {
 
 	@Override
 	public boolean validateValue(double value) {
-		return value <= 0;
+		return Double.isFinite(value) && value > 0;
 	}
 
 	@Override
@@ -26,13 +31,20 @@ public class ResistorBuilder implements ElementBuilder {
 	}
 
 	@Override
+	public Element createElement(Circuit circuit, Node neg, Node pos,
+			double value) {
+		return circuit.createResistor(neg, pos, value);
+	}
+
+	@Override
+	public ElementDrawer createElementDrawer(Element e, double value) {
+		return new ResistorDrawer(e, value);
+	}
+	
+	@Override
 	public void draw(Graphics g, int sx, int sy, int ex, int ey) {
 		DrawingUtils.drawResistor(g, sx, sy, ex, ey);
 		
 	}
 
-	@Override
-	public Element createElement(int sx, int sy, int ex, int ey, double value) {
-		return new ResistorElement(sx, sy, ex, ey, value);
-	}
 }

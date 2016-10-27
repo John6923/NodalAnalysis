@@ -2,6 +2,11 @@ package nodal.view;
 
 import java.awt.Graphics;
 
+import nodal.framework.Circuit;
+import nodal.framework.Element;
+import nodal.framework.Node;
+import nodal.view.util.DrawingUtils;
+
 public class CurrentSourceBuilder implements ElementBuilder {
 
 	public static ElementBuilder INSTANCE = new CurrentSourceBuilder();
@@ -17,7 +22,7 @@ public class CurrentSourceBuilder implements ElementBuilder {
 
 	@Override
 	public boolean validateValue(double value) {
-		return true;
+		return Double.isFinite(value);
 	}
 
 	@Override
@@ -26,14 +31,20 @@ public class CurrentSourceBuilder implements ElementBuilder {
 	}
 
 	@Override
-	public void draw(Graphics g, int sx, int sy, int ex, int ey) {
-		DrawingUtils.drawCurrentSource(g, sx, sy, ex, ey);
-
+	public Element createElement(Circuit circuit, Node neg, Node pos,
+			double value) {
+		return circuit.createCurrentSource(neg, pos, value);
 	}
 
 	@Override
-	public Element createElement(int sx, int sy, int ex, int ey, double value) {
-		return new CurrentSourceElement(sx, sy, ex, ey, value);
+	public ElementDrawer createElementDrawer(Element e, double value) {
+		return new CurrentSourceDrawer(e, value);
+	}
+
+	@Override
+	public void draw(Graphics g, int sx, int sy, int ex, int ey) {
+		DrawingUtils.drawCurrentSource(g, sx, sy, ex, ey);
+
 	}
 
 }

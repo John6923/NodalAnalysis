@@ -3,8 +3,8 @@ package nodal.standard;
 import java.util.ArrayList;
 import java.util.List;
 
-import nodal.Matrix;
 import nodal.framework.Element;
+import nodal.util.Matrix;
 
 public class NodeImpl implements MutableNode {
 	

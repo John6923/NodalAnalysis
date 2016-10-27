@@ -3,10 +3,10 @@ package nodal.standard;
 import java.util.ArrayList;
 import java.util.List;
 
-import nodal.Matrix;
 import nodal.framework.Circuit;
 import nodal.framework.Element;
 import nodal.framework.Node;
+import nodal.util.Matrix;
 import nodal.framework.InvalidNodeException;
 
 public class CircuitImpl implements Circuit {

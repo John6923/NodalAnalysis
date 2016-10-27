@@ -2,15 +2,21 @@ package nodal.view;
 
 import java.awt.Graphics;
 
+import nodal.framework.Circuit;
+import nodal.framework.Element;
+import nodal.framework.Node;
+
 public interface ElementBuilder {
-	boolean requiresValue();
+	public boolean requiresValue();
 
-	boolean validateValue(double value);
+	public boolean validateValue(double value);
 
-	String getValuePrompt();
+	public String getValuePrompt();
 
-	Element createElement(int sx, int sy, int ex, int ey, double value);
+	public Element createElement(Circuit circuit, Node neg, Node pos, double value);
+	
+	public ElementDrawer createElementDrawer(Element e, double value);
 
-	void draw(Graphics g, int sx, int sy, int ex, int ey);
+	public void draw(Graphics g, int sx, int sy, int ex, int ey);
 
 }
